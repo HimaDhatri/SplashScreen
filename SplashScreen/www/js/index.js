@@ -33,8 +33,22 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
-
+        document.addEventListener("backbutton", onBackKeyDown, false);
         app.receivedEvent('deviceready');
+    },
+    //button back
+    onBackKeyDown: function () {
+        navigator.notification.confirm(
+            "Do you want to exit the app?",
+            function (button) {
+                if (button == 2) {
+                    navigator.app.exitApp();
+                }
+            }
+            ,
+            "EXIT",
+            ["Cancel", "OK"]
+        );
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -51,27 +65,3 @@ var app = {
     }
 
 };
-document.addEventListener("backbutton", function (e) {
-    if ($.mobile.activePage.is('#index')) {
-        /* 
-         Event preventDefault/stopPropagation not required as adding backbutton
-          listener itself override the default behaviour. Refer below PhoneGap link.
-        */
-        //e.preventDefault();
-
-        navigator.notification.confirm(
-            "Do you want to exit the app?",
-            function (button) {
-                if (button == 2) {
-                    navigator.app.exitApp();
-                }
-            }
-            ,
-            "EXIT",
-            ["Cancel", "OK"]
-        );
-    }
-    else {
-        navigator.app.backHistory()
-    }
-}, false);
