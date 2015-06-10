@@ -46,6 +46,10 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
-        navigator.splashscreen.show();
+        spinnerplugin.show({
+            
+            fullscreen: true,  // defaults to false
+        });
+       
     }
 };
