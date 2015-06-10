@@ -34,24 +34,10 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
         app.receivedEvent('deviceready');
-        document.addEventListener("backbutton", onBackKeyDown, false);
-        
+        document.addEventListener("backbutton", onBackKeyDown, false);        
     },
     //button back
-    onBackKeyDown: function () {
-        navigator.notification.confirm(
-            "Do you want to exit the app?",
-
-            function (button) {
-                if (button == 2) {
-                    navigator.app.exitApp();
-                }
-            }
-            ,
-            "EXIT",
-            ["Cancel", "OK"]
-        );
-    },
+    
     // Update DOM on a Received Event
     receivedEvent: function(id) {
         var parentElement = document.getElementById(id);
@@ -67,3 +53,7 @@ var app = {
     }
 
 };
+function onBackKeyDown() {
+    alert("exit");
+    navigator.app.exitApp();
+}
