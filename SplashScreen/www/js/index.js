@@ -51,15 +51,27 @@ var app = {
     }
 
 };
-// This is your app's init method. Here's an example of how to use it
-function init() {
-    document.addEventListener("deviceready", onDR, false);
-}
-function onDR() {
-    document.addEventListener("backbutton", backKeyDown, true);
-    //boot your app...
-}
-function backKeyDown() {
-    // do something here if you wish
-     alert('go back!');
-}
+document.addEventListener("backbutton", function (e) {
+    if ($.mobile.activePage.is('#index')) {
+        /* 
+         Event preventDefault/stopPropagation not required as adding backbutton
+          listener itself override the default behaviour. Refer below PhoneGap link.
+        */
+        //e.preventDefault();
+
+        navigator.notification.confirm(
+            "Do you want to exit the app?",
+            function (button) {
+                if (button == 2) {
+                    navigator.app.exitApp();
+                }
+            }
+            ,
+            "EXIT",
+            ["Cancel", "OK"]
+        );
+    }
+    else {
+        navigator.app.backHistory()
+    }
+}, false);
