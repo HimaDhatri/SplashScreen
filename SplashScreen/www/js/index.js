@@ -46,10 +46,7 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
-        spinnerplugin.show({
-            
-            fullscreen: true,  // defaults to false
-        });
+        
        
     }
 };
