@@ -32,8 +32,14 @@
             function showalert() {
                 alert("hello");
                 window.location = "Html.html";
+                function backKeyDown() {
+                    // do something here if you wish
+                     alert('go back!');
+                }
             }
-           
+            function back() {
+                window.location = "back.html";
+            }
 
             //function onBackKeyDown(e) {
             //    e.preventDefault();
@@ -59,7 +65,10 @@
             </div>
         </div>
         <input type="button" value="click" onclick="showalert()"/>
-        <script type="text/javascript" src="cordova.js"></script>
+
+        <input type="button" value="click" onclick="back()"/>
+       
+        <script type="text/javascript"  src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
             app.initialize();
